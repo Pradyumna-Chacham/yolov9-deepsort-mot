@@ -1,0 +1,43 @@
+system:
+  seed: 42
+
+device: auto   # auto | cpu | cuda | mps
+
+detector:
+  name: yolov9
+  weights: models/yolov9-c.pt
+  conf_threshold: 0.25
+  iou_threshold: 0.45
+  classes: [0, 1, 2, 3, 5, 7]
+
+tracker:
+  name: deepsort
+  max_age: 30
+  n_init: 3
+  embedder: mobilenet
+
+events:
+  segment_duration_sec: 5.0
+  stop_threshold_frames: 8
+  proximity_threshold_px: 80
+
+captioning:
+  template_enabled: true
+  vlm_enabled: false
+  vlm_model: Salesforce/blip-image-captioning-base
+  keyframe_interval_sec: 5
+
+visualization:
+  draw_trails: true
+  trail_length: 30
+  show_confidence: true
+  show_class: true
+
+output:
+  fps: 25
+  resolution: [1280, 720]
+  save_json: true
+  save_mot_format: true
+
+demo:
+  max_video_seconds: 20
